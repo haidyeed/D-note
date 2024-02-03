@@ -26,7 +26,11 @@ class ExternalAuth
         $userService = new RetrieveUser();
         $user = $userService->getUserData($request->header('authorization'));
 
-        if($user && $user['user_id']){
+        if($user && $user['errors']!='none'){
+            return response()->json(['errors' => "access forbidden" ,'message'=>'token found but not authorized'], 403);
+        }
+        
+        if($user && $user['user_id']!= 0){
             $request['user_data'] = $user['user_id'];
         }
 
