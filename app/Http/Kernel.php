@@ -42,6 +42,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Rakutentech\LaravelRequestDocs\LaravelRequestDocsMiddleware::class,
+            \App\Http\Middleware\ExternalAuth::class,
         ],
     ];
 
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'external.auth'=>\App\Http\Middleware\ExternalAuth::class,
     ];
 }

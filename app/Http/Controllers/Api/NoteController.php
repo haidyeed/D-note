@@ -46,7 +46,11 @@ class NoteController extends Controller
         $note = new Note;
         $note->title = $request->title;
         $note->content = $request->content;
-        $note->user_id = $request->user_id;
+        
+        //user_data is the id retrieved from auth microservice
+        // user_id is the form request id which may be not accurate (left just for testing form api individually) 
+        //TODO:: remove request user_id and only depend on user_data
+        $note->user_id = $request['user_data'] ?? $request->user_id;
 
         $note->save();
 
