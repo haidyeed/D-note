@@ -15,6 +15,10 @@ use App\Http\Controllers\Api\NoteController;
 |
 */
 
-Route::resources([
-    'notes' => NoteController::class,
-]);
+Route::middleware('external.auth')->group(function () {
+
+    Route::resources([
+        'notes' => NoteController::class,
+    ]);
+
+});
